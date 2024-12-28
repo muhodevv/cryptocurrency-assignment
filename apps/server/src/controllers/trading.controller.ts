@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import { TradingService } from "../services/trading.service";
+import { binanceClient } from "../lib/binanceClient";
 
 export class TradingController {
-    private tradingService: TradingService;
+    private readonly tradingService: TradingService;
 
     constructor() {
-        this.tradingService = new TradingService();
+        this.tradingService = new TradingService(binanceClient);
     }
 
     getTradingPairs = async (req: Request, res: Response): Promise<void> => {

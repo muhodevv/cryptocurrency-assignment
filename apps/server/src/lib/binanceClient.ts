@@ -1,10 +1,11 @@
 import { Spot } from '@binance/connector-typescript';
+import { IBinanceClient } from '../types';
 
 class BinanceClient implements IBinanceClient {
   private client: Spot;
 
   constructor(apiKey: string, apiSecret: string, baseUrl: string) {
-    this.client = new Spot(apiKey, apiSecret, { baseURL: baseUrl });
+    this.client = new Spot(apiKey, apiSecret, { baseURL: baseUrl, timeout: 10000 });
   }
 
   async getTradingPairs(limit: number = 100): Promise<string[]> {
@@ -15,7 +16,7 @@ class BinanceClient implements IBinanceClient {
         .filter(code => code.status === 'TRADING')
         .slice(0, limit)
         .map(code => code.symbol);
-    } catch (error) {
+    } catch (error:any) {
       console.error('Error fetching trading pairs:', error);
       throw error;
     }
