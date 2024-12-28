@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import Dashboard from "./views/Dashboard/Dashboard"
+import { SocketProvider } from "./context/SocketContext/SocketProvider"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,7 +14,9 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Dashboard />
+      <SocketProvider>
+        <Dashboard />
+      </SocketProvider>
     </QueryClientProvider>
   )
 }
