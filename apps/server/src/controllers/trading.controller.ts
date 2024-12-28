@@ -11,7 +11,7 @@ export class TradingController {
 
     getTradingPairs = async (req: Request, res: Response): Promise<void> => {
         try {
-            const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
+            const limit = req.query.limit ? parseInt(req.query.limit as string) : 100;
             const pairs = await this.tradingService.getTradingPairs(limit);
             res.json({ pairs });
         } catch (error) {
