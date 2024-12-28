@@ -1,3 +1,5 @@
+import { Spot } from '@binance/connector-typescript';
+
 export interface IBinanceClient {
-    getTradingPairs(): Promise<string[]>;
+    getClient(): Spot;
 }

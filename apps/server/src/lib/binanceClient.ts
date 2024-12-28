@@ -8,18 +8,8 @@ class BinanceClient implements IBinanceClient {
     this.client = new Spot(apiKey, apiSecret, { baseURL: baseUrl, timeout: 10000 });
   }
 
-  async getTradingPairs(limit: number = 100): Promise<string[]> {
-    try {
-      const response = await this.client.exchangeInformation();
-
-      return response.symbols
-        .filter(code => code.status === 'TRADING')
-        .slice(0, limit)
-        .map(code => code.symbol);
-    } catch (error:any) {
-      console.error('Error fetching trading pairs:', error);
-      throw error;
-    }
+  getClient() {
+    return this.client;
   }
 }
 
