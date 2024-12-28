@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import { tradingRoutes } from './routes/trading.route';
 
 const app = express();
 const httpServer = createServer(app);
@@ -15,16 +16,10 @@ const io = new Server(httpServer, {
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Server is running' });
-});
+app.use('/api/trading', tradingRoutes);
 
 io.on('connection', (socket) => {
   console.log('A user connected');
-
-  socket.on('disconnect', () => {
-    console.log('User disconnected');
-  });
 });
 
 const PORT = process.env.PORT || 3000;
