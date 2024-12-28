@@ -7,3 +7,8 @@ export async function getAllPairsService() {
 
     return transformArray<Pair>(response.data?.pairs).map(transformPair)
 }
+
+export async function getKlineDataService(symbol: string) {
+    const response = await apiClient.get(`/trading/kline/${symbol}`);
+    return response.data?.klineData;
+}

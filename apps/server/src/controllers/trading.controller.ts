@@ -18,4 +18,14 @@ export class TradingController {
             res.status(500).json({ error: 'Failed to fetch trading pairs' });
         }
     };
+
+    getKlineData = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const { symbol } = req.params;
+            const klineData = await this.tradingService.getKlineData(symbol);
+            res.json({ klineData });
+        } catch (error) {
+            res.status(500).json({ error: 'Failed to fetch kline data' });
+        }
+    };
 }

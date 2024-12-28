@@ -12,8 +12,8 @@ interface PairCardProps {
     <Card 
       role='button'
       tabIndex={0}
-      className={`transition-all duration-300 cursor-pointer hover:shadow-md bg-foreground ${
-        isSelected ? 'ring-2 ring-blue-600 bg-primary text-white' : ''
+      className={`transition-all duration-300 cursor-pointer hover:shadow-md ${
+        isSelected ? 'ring-1 ring-primary/70 bg-primary/10 text-primary' : ''
       }`}
       onClick={onSelect}
     >
@@ -27,7 +27,7 @@ interface PairCardProps {
             </p>
           </div>
           {isSelected && (
-            <div className="text-blue-300">
+            <div className="text-primary">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
